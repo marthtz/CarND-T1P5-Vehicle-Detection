@@ -1,3 +1,67 @@
+## Project Code and its Usage
+The code is available on Github: https://github.com/marthtz/CarND-P5-Vehicle-Detection 
+
+The project was cloned from the official CarND P5 repository. I added the following files:
+
+* In main folder (Python scripts, classifier data and this writeup)
+  * vehicleSVCClassifier.py	(script to train SVC classifier)
+  * tools.py	(script with common functions)
+  * detectVehicles.py (script with main and processing pipeline for vehicle detection)
+  * detectLaneAndVehicles.py (script that combines lane and vehicle detection, P4 + P5)
+  * svc_YUV_32_indv.pkl (pickle saved classifier)
+  * cam_cal_pickle.p (pickle saved camera calibration from P4)
+  * Writeup.pdf
+* In output_images folder (processed test images and videos)
+  * project_video_detect.mp4	(main video)
+  * project_video_detect_debug.mp4	(main video + debug info)
+  * project_video_lane_vehicle.mp4	(lane and vehicle detection combined)
+  * test1_detect.jpg to test6_detect.jpg
+  * test1_detect_debug.jpg to test6_detect_debug.jpg
+* In output_images/writeup_images folder (images mentioned in this writeup)
+  * car.png
+  * notcar.png
+  * carhog.png
+  * carhogfeatures.png
+  * roihog.png
+  * windows96.jpg
+  * windows128.jpg
+
+### Data sets:
+To run the classifier the following datasets have to be downloaded and extracted into a common folder ‘data’, where the Python scripts are located:
+*	https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip
+*	https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip
+
+
+
+### Usage of the Python scripts:
+####	vehicleSVCClassifier.py
+This script opens the supplied data set and trains a linear SVC classifier to detect vehicles. The supplied data must be extracted to a “data” folder.
+
+Execution: “python vehicleSVCClassifier.py”
+
+The script saves the classifier in a pickle file in the same folder as the script.
+
+
+####	detectVehicles.py
+This script runs vehicle detection on the provided images or videos. In addition, debug information can be created. Executing is done by calling the script with input images/videos as parameter. In addition, if the first argument is ‘debug’, additional output is generated. A saved classifier has to be specified as an argument before the input files (1st argument if debug is not enabled, 2nd argument if debug is enabled)
+
+Examples:
+* python detectVehicles.py debug svc_YUV_32.pkl test_images/test1.jpg test_images/test2.jpg
+* python detectVehicles.py debug svc_YUV_32_indv.pkl project_video.mp4
+* python detectVehicles.py svc_YUV_32_indv.pkl project_video.mp4
+
+
+####	detectLaneAndVehicles.py
+This script runs full lane line detection and vehicle detection on provided videos (images and debug not tested). A saved classifier has to be specified as an argument before the input files.
+This script is basically a combination of P4 and P5.
+
+
+Examples:
+* python detectLaneAndVehicles.py svc_YUV_32_indv.pkl project_video.mp4
+
+
+
+
 # Vehicle Detection
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
